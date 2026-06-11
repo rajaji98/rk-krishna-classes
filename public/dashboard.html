@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Dashboard</title>
+
+  <link rel="stylesheet" href="/styles.css">
+
+  <script defer src="/app.js"></script>
+
+</head>
+
+<body>
+
+  <div id="appView" class="app-view">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+      <div class="logo-area">
+
+        <img
+          src="/assets/logo.png"
+          class="site-logo"
+        >
+
+        <div>
+          <h2>RK Krishna Classes</h2>
+          <p>Teacher Dashboard</p>
+        </div>
+
+      </div>
+
+      <div class="topbar-actions">
+
+        <span id="teacherName" 
+          class="teacher-pill">
+        </span>
+
+        <button
+          id="admissionBtn"
+          class="primary-button"
+          style="display:none;"
+        >
+          New Admission
+        </button>
+
+        <button
+          id="manageTeachersBtn"
+          class="primary-button"
+          style="display:none;"
+        >
+          Manage Teachers
+        </button>
+
+      <button
+        id="logoutButton"
+        class="secondary-button"
+        type="button"
+      >
+        Logout
+      </button>
+
+    </div>
+
+    </header>
+
+    <!-- MAIN -->
+
+    <main class="app-shell">
+
+      <!-- LEFT SIDE -->
+
+      <section class="records-area">
+
+        <!-- STATS -->
+
+        <div class="stats-grid">
+
+          <div class="stat-item">
+            <span>Total Students</span>
+            <strong id="totalStudents">0</strong>
+          </div>
+
+          <div class="stat-item">
+            <span>Fees Collected</span>
+            <strong id="feesCollected">₹0</strong>
+          </div>
+
+          <div class="stat-item">
+            <span>Balance Due</span>
+            <strong id="balanceDue">₹0</strong>
+          </div>
+
+          <div class="stat-item">
+            <span>Subjects</span>
+            <strong id="subjectCount">0</strong>
+          </div>
+
+        </div>
+
+        <!-- FILTERS -->
+
+        <div class="filters">
+
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Search student"
+          >
+
+           <select id="classFilter">
+
+            <option value="">All Classes</option>
+
+            <option value="9th">
+              9th
+            </option>
+
+            <option value="10th">
+              10th
+            </option>
+
+            <option value="11th">
+              11th
+            </option>
+
+            <option value="12th">
+              12th
+            </option>
+
+          </select>
+
+          <select id="subjectFilter">
+            <option value="">All subjects</option>
+          </select>
+
+
+
+          <select id="paymentFilter">
+
+            <option value="">All payments</option>
+
+            <option value="Paid">
+              Paid
+            </option>
+
+            <option value="Partial">
+              Partial
+            </option>
+
+            <option value="Due">
+              Due
+            </option>
+
+          </select>
+
+          <button
+            id="exportButton"
+            class="primary-button"
+          >
+            Export CSV
+          </button>
+
+        </div>
+
+        <!-- TABLE -->
+
+        <div class="table-panel">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Photo</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Subjects</th>
+                <th>Payment</th>
+                <th>Fee</th>
+                <th>Paid</th>
+                <th>Balance</th>
+                <th>Contact</th>
+                <th>Actions</th>
+              </tr>
+
+            </thead>
+
+            <tbody id="studentsTableBody"></tbody>
+
+          </table>
+
+          <div
+            id="emptyState"
+            class="empty-state"
+          >
+            No students found.
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- RIGHT SIDE -->
+
+      <aside class="editor-panel">
+
+        <h2 id="formTitle">
+          Add Student
+        </h2>
+
+        <form
+          id="studentForm"
+          class="student-form"
+        >
+
+          <input
+            id="studentName"
+            name="name"
+            placeholder="Student Name"
+            required
+          >
+          <label>
+              Class
+
+              <select
+                id="studentClass"
+                name="class"
+                required
+              >
+
+                <option value="">
+                  Select Class
+                </option>
+
+                <option value="9th">
+                  9th
+                </option>
+
+                <option value="10th">
+                  10th
+                </option>
+
+                <option value="11th">
+                  11th
+                </option>
+
+                <option value="12th">
+                  12th
+                </option>
+
+              </select>
+
+            </label>
+
+            <label>
+              Subject
+
+              <select
+                id="studentSubject"
+                name="subject"
+                required
+              >
+
+                <option value="">
+                  Select Subject
+                </option>
+
+                <option value="Mathematics">
+                  Mathematics
+                </option>
+
+                <option value="Physics">
+                  Physics
+                </option>
+
+                <option value="Chemistry">
+                  Chemistry
+                </option>
+
+                <option value="Biology">
+                  Biology
+                </option>
+
+                <option value="English">
+                  English
+                </option>
+
+              </select>
+
+            </label>
+
+ 
+
+          <input
+            id="studentPhone"
+            name="phone"
+            placeholder="Phone"
+          >
+
+          <input
+            id="joiningDate"
+            name="joiningDate"
+            type="date"
+          >
+
+
+          <input
+            id="feeAmount"
+            name="feeAmount"
+            type="number"
+            placeholder="Total Fee"
+          >
+
+          <input
+            id="amountPaid"
+            name="amountPaid"
+            type="number"
+            placeholder="Amount Paid"
+          >
+
+          <select
+            id="paymentStatus"
+            name="paymentStatus"
+          >
+
+            <option value="Due">
+              Due
+            </option>
+
+            <option value="Partial">
+              Partial
+            </option>
+
+            <option value="Paid">
+              Paid
+            </option>
+
+          </select>
+
+
+
+          <button
+            id="saveStudentButton"
+            class="primary-button"
+            type="submit"
+          >
+            Save Student
+          </button>
+
+          <button
+            id="clearFormButton"
+            class="secondary-button"
+            type="button"
+          >
+            Clear
+          </button>
+
+          <p id="formMessage"></p>
+
+        </form>
+
+      </aside>
+
+    </main>
+
+  </div>
+
+</body>
+
+</html>

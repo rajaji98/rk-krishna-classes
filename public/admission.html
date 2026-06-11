@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>New Admission</title>
+
+  <link
+    rel="stylesheet"
+    href="/styles.css"
+  >
+
+  <script defer src="/admission.js"></script>
+
+</head>
+
+<body>
+
+  <div class="auth-shell">
+
+    <section
+      class="auth-panel"
+      style="max-width:900px;"
+    >
+
+      <h1>New Student Admission</h1>
+
+      <form
+        id="admissionForm"
+        class="student-form"
+      >
+
+        <h3>Student Details</h3>
+
+        <input
+          name="name"
+          placeholder="Student Name"
+          required
+        >
+
+        <input
+          name="fatherName"
+          placeholder="Father Name"
+          required
+        >
+
+        <input
+          name="phone"
+          placeholder="Phone Number"
+          required
+        >
+
+        <input
+          name="dob"
+          type="date"
+        >
+
+        <textarea
+          name="address"
+          placeholder="Address"
+        ></textarea>
+
+        <label>
+
+            Student Photo
+
+            <input
+                type="file"
+                name="photo"
+                accept="image/*"
+            >
+
+            </label>
+
+        <h3>Academic Details</h3>
+
+        <select
+          name="className"
+          required
+        >
+
+          <option value="">
+            Select Class
+          </option>
+
+          <option value="9th">
+            9th
+          </option>
+
+          <option value="10th">
+            10th
+          </option>
+
+          <option value="11th">
+            11th
+          </option>
+
+          <option value="12th">
+            12th
+          </option>
+
+        </select>
+<label>Subjects</label>
+
+<div class="subjects-grid">
+
+  <label>
+    <input
+      type="checkbox"
+      name="subjects"
+      value="Mathematics"
+    >
+    Mathematics
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      name="subjects"
+      value="Physics"
+    >
+    Physics
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      name="subjects"
+      value="Chemistry"
+    >
+    Chemistry
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      name="subjects"
+      value="Biology"
+    >
+    Biology
+  </label>
+
+  <label>
+    <input
+      type="checkbox"
+      name="subjects"
+      value="English"
+    >
+    English
+  </label>
+
+</div>
+
+         
+        <input
+          name="schoolName"
+          placeholder="School Name"
+        >
+
+        <input
+          name="lastExamPercentage"
+          type="number"
+          placeholder="Last Exam Percentage"
+        >
+
+        <h3>Fee Details</h3>
+
+        <input
+          name="feeAmount"
+          type="number"
+          placeholder="Total Fee"
+        >
+
+        <input
+          name="amountPaid"
+          type="number"
+          placeholder="Amount Paid"
+        >
+
+        <select
+          name="paymentStatus"
+        >
+
+          <option value="Due">
+            Due
+          </option>
+
+          <option value="Partial">
+            Partial
+          </option>
+
+          <option value="Paid">
+            Paid
+          </option>
+
+        </select>
+
+        <button
+          type="submit"
+          class="primary-button"
+        >
+          Register Student
+        </button>
+
+        <p id="formMessage"></p>
+
+      </form>
+
+    </section>
+
+  </div>
+
+</body>
+</html>

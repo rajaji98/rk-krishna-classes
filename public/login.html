@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Teacher Login</title>
+
+  <link rel="stylesheet" href="/styles.css">
+
+  <script defer src="/app.js"></script>
+</head>
+
+<body>
+
+  <div class="auth-shell">
+
+    <section class="auth-panel">
+
+      <img src="/assets/logo.png" class="login-logo">
+
+      <div class="auth-copy">
+
+        <h1>Teacher Login</h1>
+
+        <p>
+          Access RK Krishna Classes dashboard
+          securely.
+        </p>
+
+      </div>
+
+      <form id="loginForm" class="auth-form">
+
+        <label>
+          Email / Mobile / Username
+
+          <input
+            id="loginIdentifier"
+            name="identifier"
+            type="text"
+            placeholder="Enter email, mobile or username"
+            required
+          >
+        </label>
+
+        <label>
+          Password
+
+          <input
+            id="loginPassword"
+            name="password"
+            type="password"
+            required
+          >
+        </label>
+
+        <button
+          class="primary-button"
+          type="submit"
+        >
+          Login
+        </button>
+
+        <p
+          id="loginError"
+          class="form-error"
+        ></p>
+
+        <p class="forgot-password-link">
+          <a href="/forgot-password.html">
+            Forgot Password?
+          </a>
+        </p>
+        
+      </form>
+
+    </section>
+
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "rk-krishna-classes",
+  "version": "1.0.0",
+  "description": "Teacher-only student record website for RK Krishna Classes.",
+  "main": "server/app.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "dev": "nodemon server/app.js",
+    "reset-teacher": "node server/scripts/resetTeacher.js"
+  },
+  "keywords": [
+    "coaching",
+    "student-records",
+    "teacher-dashboard"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.6.3",
+    "multer": "^2.1.1",
+    "nodemailer": "^8.0.11"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

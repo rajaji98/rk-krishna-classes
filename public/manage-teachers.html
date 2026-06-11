@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Manage Teachers</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="manage-teachers-page">
+
+<div class="auth-shell">
+
+  <div class="auth-panel">
+
+  <h2 style="text-align: center;margin-bottom: 25px;">
+    Add Teacher
+  </h2>
+
+  <form id="teacherForm">
+
+    <input
+      id="teacherName"
+      type="text"
+      placeholder="Teacher Name"
+      required
+    >
+
+    <input
+      id="teacherEmail"
+      type="email"
+      placeholder="Email"
+      required
+    >
+
+    <input
+      id="teacherMobile"
+      type="text"
+      placeholder="Mobile Number"
+      required
+    >
+
+    <input
+      id="teacherUsername"
+      type="text"
+      placeholder="Username"
+      required
+    >
+
+    <input
+      id="teacherPassword"
+      type="password"
+      placeholder="Password"
+      required
+    >
+
+    <button
+      class="primary-button"
+      type="submit"
+      style="display:block; margin:25px auto 0;"
+    >
+      Create Teacher
+    </button>
+
+  </form>
+
+  <p id="teacherMessage"></p>
+
+  </div>
+
+</div>
+
+<script>
+document.getElementById("teacherForm")
+.addEventListener("submit", async (e) => {
+
+  e.preventDefault();
+
+  const payload = {
+    name: document.getElementById("teacherName").value,
+    email: document.getElementById("teacherEmail").value,
+    mobile: document.getElementById("teacherMobile").value,
+    username: document.getElementById("teacherUsername").value,
+    password: document.getElementById("teacherPassword").value
+  };
+
+  try {
+
+    const response = await fetch("/api/teachers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "include",
+      body: JSON.stringify(payload)
+    });
+
+    const data = await response.json();
+
+    document.getElementById("teacherMessage").innerText =
+      data.message || "Teacher Created Successfully";
+
+    document.getElementById("teacherForm").reset();
+
+  } catch (error) {
+
+    document.getElementById("teacherMessage").innerText =
+      "Error creating teacher";
+
+  }
+
+});
+</script>
+
+</body>
+</html>
