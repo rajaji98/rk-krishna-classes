@@ -25,21 +25,120 @@ function cleanPaymentStatus(value) {
   return paymentStatuses.has(status) ? status : "Due";
 }
 
-function buildStudentPayload(body, existingStudent = {}) {
-  return {
-    ...existingStudent,
-    name: cleanText(body.name ?? existingStudent.name),
-    subject: cleanText(body.subject ?? existingStudent.subject),
-    phone: cleanText(body.phone ?? existingStudent.phone),
-    email: cleanText(body.email ?? existingStudent.email),
-    joiningDate: cleanText(body.joiningDate ?? existingStudent.joiningDate),
-    paymentStatus: cleanPaymentStatus(body.paymentStatus ?? existingStudent.paymentStatus),
-    feeAmount: cleanMoney(body.feeAmount ?? existingStudent.feeAmount),
-    amountPaid: cleanMoney(body.amountPaid ?? existingStudent.amountPaid),
-    dueDate: cleanText(body.dueDate ?? existingStudent.dueDate),
-    notes: cleanText(body.notes ?? existingStudent.notes)
-  };
-}
+function buildStudentPayload(
+  body,
+  existingStudent = {}
+) {
+
+    return {
+
+      ...existingStudent,
+
+      name:
+        cleanText(
+          body.name ??
+          existingStudent.name
+        ),
+
+      fatherName:
+        cleanText(
+          body.fatherName ??
+          existingStudent.fatherName
+        ),
+
+      phone:
+        cleanText(
+          body.phone ??
+          existingStudent.phone
+        ),
+
+      email:
+        cleanText(
+          body.email ??
+          existingStudent.email
+        ),
+
+      dob:
+        cleanText(
+          body.dob ??
+          existingStudent.dob
+        ),
+
+      address:
+        cleanText(
+          body.address ??
+          existingStudent.address
+        ),
+
+      className:
+        cleanText(
+          body.className ??
+          existingStudent.className
+        ),
+
+      schoolName:
+        cleanText(
+          body.schoolName ??
+          existingStudent.schoolName
+        ),
+
+      lastExamPercentage:
+        Number(
+          body.lastExamPercentage ??
+          existingStudent.lastExamPercentage ??
+          0
+        ),
+
+      subjects:
+        body.subjects
+          ? (
+              Array.isArray(body.subjects)
+                ? body.subjects
+                : [body.subjects]
+            )
+          : (
+              existingStudent.subjects || []
+            ),
+
+      joiningDate:
+        cleanText(
+          body.joiningDate ??
+          existingStudent.joiningDate
+        ),
+
+      paymentStatus:
+        cleanPaymentStatus(
+          body.paymentStatus ??
+          existingStudent.paymentStatus
+        ),
+
+      feeAmount:
+        cleanMoney(
+          body.feeAmount ??
+          existingStudent.feeAmount
+        ),
+
+      amountPaid:
+        cleanMoney(
+          body.amountPaid ??
+          existingStudent.amountPaid
+        ),
+
+      dueDate:
+        cleanText(
+          body.dueDate ??
+          existingStudent.dueDate
+        ),
+
+      notes:
+        cleanText(
+          body.notes ??
+          existingStudent.notes
+        )
+
+    };
+
+  }
 
 function validateStudent(student) {
   if (!student.name) {
@@ -68,11 +167,20 @@ function applyFilters(students, query) {
   return students.filter((student) => {
     const matchesSearch =
       !search ||
-      [student.name, student.subject, student.phone, student.email]
+          [
+            student.name,
+            ...(student.subjects || []),
+            student.phone,
+            student.email
+          ]
         .filter(Boolean)
         .some((value) => String(value).toLowerCase().includes(search));
     const matchesPayment = !paymentStatus || student.paymentStatus === paymentStatus;
-    const matchesSubject = !subject || String(student.subject).toLowerCase() === subject;
+    const matchesSubject =
+        !subject ||
+        (student.subjects || []).some(
+          (s) => s.toLowerCase() === subject
+        );
 
     return matchesSearch && matchesPayment && matchesSubject;
   });

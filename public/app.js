@@ -20,6 +20,7 @@ const elements = {
   saveStudentButton: document.getElementById("saveStudentButton"),
   clearFormButton: document.getElementById("clearFormButton"),
   searchInput: document.getElementById("searchInput"),
+  classFilter:document.getElementById("classFilter" ),
   subjectFilter: document.getElementById("subjectFilter"),
   paymentFilter: document.getElementById("paymentFilter"),
   studentsTableBody: document.getElementById("studentsTableBody"),
@@ -154,6 +155,7 @@ async function loadStudents() {
 function getFilteredStudents() {
   const search = elements.searchInput.value.trim().toLowerCase();
   const subject = elements.subjectFilter.value.trim().toLowerCase();
+  const className = elements.classFilter.value.trim().toLowerCase();
   const paymentStatus = elements.paymentFilter.value;
 
   return state.students.filter((student) => {
@@ -169,9 +171,15 @@ function getFilteredStudents() {
         .map(s => s.toLowerCase())
         .includes(subject);
 
+    const matchesClass =
+      !className ||
+      String(
+        student.className || ""
+      ).toLowerCase() === className;
+
     const matchesPayment = !paymentStatus || student.paymentStatus === paymentStatus;
 
-    return matchesSearch && matchesSubject && matchesPayment;
+    return matchesSearch && matchesSubject && matchesPayment && matchesClass;
   });
 }
 
@@ -588,6 +596,13 @@ if (elements.searchInput) {
 
 if (elements.subjectFilter) {
   elements.subjectFilter.addEventListener("change", renderStudents);
+}
+
+if (elements.classFilter) {
+  elements.classFilter.addEventListener(
+    "change",
+    renderStudents
+  );
 }
 
 if (elements.paymentFilter) {
