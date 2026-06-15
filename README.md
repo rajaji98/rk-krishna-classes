@@ -12,7 +12,6 @@ It includes:
 - Search
 - CSV export
 - Simple backend API
-- Local JSON storage in `server/data`
 
 ## 1. Install Required Software
 
@@ -23,12 +22,7 @@ Install these first:
 
 After installing Node.js, open Command Prompt or PowerShell and check:
 
-```powershell
-node -v
-npm -v
-```
 
-Both commands should show version numbers.
 
 
 
