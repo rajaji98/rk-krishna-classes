@@ -96,9 +96,11 @@ function buildStudentPayload(
                 ? body.subjects
                 : [body.subjects]
             )
-          : (
-              existingStudent.subjects || []
-            ),
+          : body.subject
+            ? [body.subject]
+            : (
+                existingStudent.subjects || []
+              ),
 
       joiningDate:
         cleanText(

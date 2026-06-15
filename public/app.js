@@ -358,15 +358,28 @@ function formPayload() {
 
   return {
     name: data.name,
-    subject: data.subject,
+
+    subjects: data.subject
+      ? [data.subject]
+      : [],
+
     phone: data.phone,
+
     email: data.email,
+
     joiningDate: data.joiningDate,
+
     paymentStatus: data.paymentStatus,
+
     feeAmount: Number(data.feeAmount || 0),
+
     amountPaid: Number(data.amountPaid || 0),
+
     dueDate: data.dueDate,
-    notes: data.notes
+
+    notes: data.notes,
+
+    className: data.class
   };
 }
 
