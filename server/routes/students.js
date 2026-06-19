@@ -3,6 +3,8 @@ const express = require("express");
 const Student = require("../models/Student");
 const { requireTeacher } = require("../middleware/auth");
 // const { readJson, writeJson } = require("../utils/store");
+const upload =
+  require("../middleware/upload");
 
 const router = express.Router();
 const paymentStatuses = new Set(["Paid", "Partial", "Due"]);
@@ -307,7 +309,10 @@ router.get("/:id", async (req, res, next) => {
 
 });
 
-router.put("/:id", async (req, res, next) => {
+router.put(
+  "/:id", 
+   upload.single("photo"),
+  async (req, res, next) => {
 
   try {
 
@@ -343,6 +348,12 @@ router.put("/:id", async (req, res, next) => {
         student
       )
     );
+    if (req.file) {
+
+      student.photo =
+        req.file.filename;
+
+    }
 
     const validationMessage =
       validateStudent(student);
@@ -354,7 +365,8 @@ router.put("/:id", async (req, res, next) => {
       });
 
     }
-
+      console.log("FILE:", req.file);
+      
     await student.save();
 
     return res.json({

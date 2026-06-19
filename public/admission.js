@@ -146,55 +146,7 @@ form.addEventListener(
             method,
             credentials: "include",
 
-            headers:
-              studentId
-                ? {
-                    "Content-Type":
-                      "application/json"
-                  }
-                : undefined,
-
-            body:
-              studentId
-                ? JSON.stringify({
-
-                    name:
-                      formData.get("name"),
-
-                    fatherName:
-                      formData.get("fatherName"),
-
-                    phone:
-                      formData.get("phone"),
-
-                    dob:
-                      formData.get("dob"),
-
-                    address:
-                      formData.get("address"),
-
-                    className:
-                      formData.get("className"),
-
-                    schoolName:
-                      formData.get("schoolName"),
-
-                    lastExamPercentage:
-                      formData.get("lastExamPercentage"),
-
-                    feeAmount:
-                      formData.get("feeAmount"),
-
-                    amountPaid:
-                      formData.get("amountPaid"),
-
-                    paymentStatus:
-                      formData.get("paymentStatus"),
-
-                    subjects
-
-                  })
-                : formData
+            body : formData
 
           }
         );
