@@ -180,11 +180,105 @@ nav a:hover::after {
   width: 100%;
   border-radius: 30px;
 
-  border: 1px solid rgba(255,255,255,0.1);
+  transition:
+    opacity 0.5s ease-in-out,
+    transform 0.5s ease-in-out;
+    
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
 
-  box-shadow:
-    0 0 30px rgba(124,58,237,0.3),
-    0 0 80px rgba(37,99,235,0.2);
+/* new for sliding */
+.hero-image {
+  position: relative;
+}
+
+.hero-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.15);
+  border-radius: 30px;
+}
+
+.slider-controls {
+
+  position: absolute;
+
+  bottom: 20px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 15px;
+}
+
+.slider-controls button {
+
+  width: 45px;
+  height: 45px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.9);
+
+  cursor: pointer;
+
+  font-size: 20px;
+  font-weight: bold;
+
+  transition: all 0.3s ease;
+
+  color: #1e293b;
+}
+
+.slider-controls button:hover {
+
+  background: white;
+
+  transform: scale(1.1);
+
+}
+
+/* SLIDER DOTS */
+
+.slider-dots {
+
+  position: absolute;
+
+  bottom: -40px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 10px;
+
+}
+
+.dot {
+
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,0.4);
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+}
+
+.dot.active {
+
+  background: white;
+
+  transform: scale(1.3);
+
 }
 
 /* SECTIONS */

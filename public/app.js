@@ -599,6 +599,164 @@ if (elements.studentForm) {
 
 }
 
+    /*new add */
+    
+const nextBtn =
+
+  document.getElementById("nextHero");
+
+const prevBtn =
+  document.getElementById("prevHero");
+
+const heroImage =
+  document.getElementById("heroImage");
+
+if (
+  nextBtn &&
+  prevBtn &&
+  heroImage
+) {
+
+  const heroSlides = [
+    {
+      title:
+        "Build Your Future With RK Krishna Classes",
+      text:
+        "Shape Your Future With High-Quality Education.",
+      image:
+        "/assets/slide1.jpg"
+    },
+    {
+      title:
+        "Top Results Every Year",
+      text:
+        "Our Students Consistently Achieve Excellence.",
+      image:
+        "/assets/slide2.jpg"
+    },
+    {
+      title:
+        "Expert Faculty & Personal Guidance",
+      text:
+        "Learn From Experienced Teachers.",
+      image:
+        "/assets/slide3.jpg"
+    }
+  ];
+
+  let currentSlide = 0;
+
+    function updateHero() {
+
+      heroImage.style.opacity = "0";
+
+      setTimeout(() => {
+
+        document.getElementById(
+          "heroTitle"
+        ).textContent =
+          heroSlides[currentSlide].title;
+
+        document.getElementById(
+          "heroText"
+        ).textContent =
+          heroSlides[currentSlide].text;
+
+        heroImage.src =
+          heroSlides[currentSlide].image;
+
+        heroImage.style.opacity = "1";
+
+        const dots =
+            document.querySelectorAll(".dot");
+
+          dots.forEach(dot =>
+            dot.classList.remove("active")
+          );
+
+          dots[currentSlide]
+            .classList.add("active");
+
+      }, 300);
+
+    }
+
+    document
+.querySelectorAll(".dot")
+.forEach((dot, index) => {
+
+  dot.addEventListener(
+    "click",
+    () => {
+
+      currentSlide = index;
+
+      updateHero();
+
+    }
+  );
+
+});
+
+    nextBtn.addEventListener(
+      "click",
+      nextSlide
+    );
+
+  prevBtn.addEventListener(
+    "click",
+    () => {
+
+      currentSlide =
+        (
+          currentSlide - 1 +
+          heroSlides.length
+        ) %
+        heroSlides.length;
+
+      updateHero();
+
+    }
+  );
+
+const heroSection =
+  document.querySelector(
+    ".hero-section"
+  );
+
+heroSection.addEventListener(
+  "mouseenter",
+  () => {
+    clearInterval(sliderInterval);
+  }
+);
+
+heroSection.addEventListener(
+  "mouseleave",
+  () => {
+    sliderInterval =
+      setInterval(
+        nextSlide,
+        5000
+      );
+  }
+);
+
+  let sliderInterval =
+    setInterval(nextSlide, 5000);
+
+  function nextSlide() {
+
+    currentSlide =
+      (currentSlide + 1) %
+      heroSlides.length;
+
+    updateHero();
+
+  }
+
+}
+
 if (elements.clearFormButton) {
   elements.clearFormButton.addEventListener("click", resetForm);
 }

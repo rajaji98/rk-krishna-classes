@@ -3,11 +3,23 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>RK Krishna Classes</title>
 
-  <link rel="stylesheet" href="/styles.css">
+  <link
+    rel="stylesheet"
+    href="/styles.css"
+  >
+
+  <script
+    defer
+    src="/app.js"
+  ></script>
+
 </head>
 
 <body>
@@ -35,45 +47,62 @@
   </header>
 
   <!-- HERO -->
+   
+<section class="hero-section">
 
-  <section class="hero-section">
+  <div class="hero-content">
 
-    <div class="hero-content">
+    <h1 id="heroTitle">
+      Build Your Future With RK Krishna Classes
+    </h1>
 
-      <h1>
-        Build Your Future
-        With RK Krishna Classes
-      </h1>
-        <!-- <p>
-          Shape Your Future With High-Quality Education
-      </p> -->
-      <p>
-        Shape Your Future With High-Quality Education.
-        Best coaching institute for Mathematics,
-        Physics, Chemistry & Biology.
-      </p>
+    <p id="heroText">
+      Shape Your Future With High-Quality Education.
+    </p>
 
-      <div class="hero-buttons">
-          <a href="#contact">
-            <button class="primary-button">
-              Join Now
-            </button>
-          </a>
+    <div class="hero-buttons">
 
-          <a href="/courses.html">
-            <button class="secondary-button">
-              Explore Courses
-            </button>
-          </a>
-      </div>
+      <a href="#courses">
+        <button class="primary-button">
+          Explore Courses
+        </button>
+      </a>
 
     </div>
 
-    <div class="hero-image">
-      <img src="/assets/classroom-banner.png">
+  </div>
+
+  <div class="hero-image">
+
+    <img
+      id="heroImage"
+      src="/assets/slide1.jpg"
+      alt="Hero Image"
+    >
+
+    <div class="slider-controls">
+
+      <button id="prevHero">
+        ❮
+      </button>
+
+      <button id="nextHero">
+        ❯
+      </button>
+
     </div>
 
-  </section>
+    <div class="slider-dots">
+
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+
+    </div>
+
+  </div>
+
+</section>
 
   <!-- ABOUT -->
 <section id="about" class="section">
