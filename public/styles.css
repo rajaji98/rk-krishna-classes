@@ -740,8 +740,8 @@ tr:hover {
 
   padding: 25px 40px;
 
-  background: red !important;
-  color: #1e293b;
+  background: #7e7982,;
+  color: #cfdbed;
   border-bottom: 1px solid #e2e8f0;
 }
 .topbar h2,
@@ -751,7 +751,7 @@ tr:hover {
 }
 
 .logo-area h2 {
-  color: #0f172a;
+  color: #0c0c0c;
 }
 
 .logo-area p {
