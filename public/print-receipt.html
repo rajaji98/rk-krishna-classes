@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Fee Receipt</title>
+
+<link rel="stylesheet" href="/styles.css">
+
+</head>
+
+<body>
+
+<div class="print-container">
+
+  <div class="print-header">
+
+    <img
+      src="/assets/logo.png"
+      class="print-logo"
+    >
+
+    <div>
+
+      <h1>RK KRISHNA CLASSES</h1>
+
+      <p>
+        Near Govt. Hospital, Amarpatan<br>
+        Maihar, Madhya Pradesh
+      </p>
+
+      <p>
+        Phone : +91 7999741662<br>
+        Email : rkkrishnaclasses@gmail.com
+      </p>
+
+      <h3>FEE RECEIPT</h3>
+
+    </div>
+
+  </div>
+
+  <hr>
+
+  <table class="print-table">
+
+    <tr>
+      <td><strong>Receipt No.</strong></td>
+      <td id="receiptNo"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Date</strong></td>
+      <td id="receiptDate"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Student Name</strong></td>
+      <td id="studentName"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Father Name</strong></td>
+      <td id="fatherName"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Class</strong></td>
+      <td id="className"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Subjects</strong></td>
+      <td id="subjects"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Total Fee</strong></td>
+      <td id="fee"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Amount Paid</strong></td>
+      <td id="paid"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Balance Due</strong></td>
+      <td id="balance"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Payment Status</strong></td>
+      <td id="status"></td>
+    </tr>
+
+  </table>
+
+  <div class="signature">
+
+
+    <div>
+      <hr>
+      <br>
+      Authorized Signature
+    </div>
+
+  </div>
+
+  <button
+    onclick="window.print()"
+    class="primary-button"
+  >
+    Print Receipt
+  </button>
+
+</div>
+
+<script src="/print-receipt.js"></script>
+
+</body>
+</html>

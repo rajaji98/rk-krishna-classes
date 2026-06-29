@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Admission Form</title>
+
+  <link
+    rel="stylesheet"
+    href="/styles.css"
+  >
+
+</head>
+
+<body>
+
+<div class="print-container">
+
+  <div class="print-header">
+
+    <img
+      src="/assets/logo.png"
+      class="print-logo"
+    >
+
+    <div>
+
+      <h1>RK KRISHNA CLASSES</h1>
+
+      <p> Near Govt. Hospital, Amarpatan
+            Maihar, Madhya Pradesh
+        </p>
+
+        <p> 
+            Phone : +91 7999741662,    
+            Email : rkkrishnaclasses@gmail.com
+        </p>
+
+      <h3>ADMISSION FORM</h3>
+
+    </div>
+
+  </div>
+
+  <hr>
+
+  <div class="student-photo">
+
+    <img
+      id="studentPhoto"
+      src=""
+      alt="Student Photo"
+    >
+
+  </div>
+
+  <table class="print-table">
+
+    <tr>
+        <td><strong>Admission No.</strong></td>
+        <td id="admissionNo"></td>
+    </tr>
+
+    <tr>
+        <td><strong>Admission Date</strong></td>
+        <td id="joiningDate"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Name</strong></td>
+      <td id="studentName"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Father Name</strong></td>
+      <td id="fatherName"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Class</strong></td>
+      <td id="className"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Subjects</strong></td>
+      <td id="subjects"></td>
+    </tr>
+
+    <tr>
+      <td><strong>School</strong></td>
+      <td id="schoolName"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Phone</strong></td>
+      <td id="phone"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Address</strong></td>
+      <td id="address"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Previous %</strong></td>
+      <td id="percentage"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Fee</strong></td>
+      <td id="fee"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Amount Paid</strong></td>
+      <td id="paid"></td>
+    </tr>
+
+    <tr>
+      <td><strong>Payment Status</strong></td>
+      <td id="status"></td>
+    </tr>
+
+
+
+  </table>
+
+  <div class="signature">
+
+    <div>
+        <hr>
+      <br>
+      Parent Signature
+    </div>
+
+    <div>
+            <hr>
+      <br>
+      Teacher Signature
+    </div>
+
+  </div>
+
+  <button
+    onclick="window.print()"
+    class="primary-button"
+  >
+    Print Admission Form
+  </button>
+
+</div>
+
+<script src="/print-admission.js"></script>
+
+</body>
+
+
+</html>

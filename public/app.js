@@ -291,6 +291,53 @@ function createStudentRow(student) {
     }
   );
 
+    const admissionButton =
+      document.createElement("button");
+
+    admissionButton.className =
+      "action-button";
+
+    admissionButton.type =
+      "button";
+
+    admissionButton.textContent =
+      "Admission";
+
+    admissionButton.addEventListener(
+      "click",
+      () => {
+
+        window.open(
+          `/print-admission.html?id=${student._id || student.id}`,
+          "_blank"
+        );
+
+      }
+    );
+
+    const receiptButton =
+        document.createElement("button");
+
+      receiptButton.className =
+        "action-button";
+
+      receiptButton.type =
+        "button";
+
+      receiptButton.textContent =
+        "Receipt";
+
+      receiptButton.addEventListener(
+        "click",
+        () => {
+
+          window.open(
+            `/print-receipt.html?id=${student._id || student.id}`,
+            "_blank"
+          );
+
+        }
+      );
 
   const deleteButton = document.createElement("button");
   deleteButton.className = "action-button danger";
@@ -301,7 +348,7 @@ function createStudentRow(student) {
       () => deleteStudent(student._id || student.id)
     );
 
-  actions.append(editButton, deleteButton);
+  actions.append(editButton,admissionButton,receiptButton, deleteButton);
   actionsCell.appendChild(actions);
 
   row.append(
