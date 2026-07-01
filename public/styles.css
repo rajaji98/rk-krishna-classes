@@ -13,8 +13,8 @@
   --light: #f8fafc;
   --card: rgba(255,255,255,0.08);
   --border: rgba(255,255,255,0.12);
-  --text: #ffffff;
-  --muted: #cbd5e1;
+  --text: #101010;
+  --muted: #8b9197;
   --success: #10b981;
   --warning: #f59e0b;
   --danger: #ef4444;
@@ -29,54 +29,6 @@
   color: var(--text);
   overflow-x: hidden;
 } */
-body {
-
-  font-family: 'Poppins', sans-serif;
-
-  margin: 0;
-
-  color: var(--text);
-
-  overflow-x: hidden;
-
-  background:
-      radial-gradient(circle at 10% 15%,
-          rgba(120,119,255,.55) 0%,
-          transparent 28%),
-
-      radial-gradient(circle at 90% 12%,
-          rgba(0,191,255,.42) 0%,
-          transparent 30%),
-
-      radial-gradient(circle at 82% 88%,
-          rgba(168,85,247,.45) 0%,
-          transparent 35%),
-
-      radial-gradient(circle at 18% 85%,
-          rgba(236,72,153,.28) 0%,
-          transparent 35%),
-
-      radial-gradient(circle at 50% 45%,
-          rgba(255,255,255,.05) 0%,
-          transparent 60%),
-
-      linear-gradient(
-          135deg,
-          #020617 0%,
-          #071126 25%,
-          #0b1733 55%,
-          #111c3d 75%,
-          #020617 100%
-      );
-
-  background-size: 250% 250%;
-
-  animation: liquidFlow 25s ease infinite;
-
-  background-attachment: fixed;
-
-}
-
 body {
 
   font-family: 'Poppins', sans-serif;
@@ -667,13 +619,24 @@ input[type="checkbox"] {
 }
 
 select {
-  background: rgba(255,255,255,0.05);
-  color: rgb(13, 13, 13);
+    background: #ffffff;
+    color: #1e293b;
+    border: 1px solid #cbd5e1;
 }
 
 select option {
-  background: #1e1b4b;
-  color: rgb(38, 37, 37);
+    background: #ffffff;
+    color: #1e293b;
+}
+
+select option:checked {
+    background: #8b5cf6;
+    color: white;
+}
+
+select option:hover {
+    background: #ede9fe;
+    color: #1e293b;
 }
 
 input:focus,
