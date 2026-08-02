@@ -1359,3 +1359,368 @@ max-width:100%;
     font-weight: 700;
 
 }
+
+
+/* ================= TOPPER PAGE ================= */
+
+.topper-hero{
+
+height:70vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+position:relative;
+
+background:url("images/topper-banner.jpg") center/cover no-repeat;
+
+border-radius:0 0 40px 40px;
+
+overflow:hidden;
+
+}
+
+.topper-overlay{
+
+position:absolute;
+
+inset:0;
+
+background:rgba(0,0,0,.55);
+
+}
+
+.topper-hero-content{
+
+position:relative;
+
+z-index:2;
+
+color:white;
+
+max-width:800px;
+
+padding:20px;
+
+}
+
+.topper-hero h1{
+
+font-size:4rem;
+
+margin-bottom:20px;
+
+}
+
+.topper-hero p{
+
+font-size:1.2rem;
+
+line-height:1.8;
+
+}
+
+.topper-stats{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:25px;
+
+margin-top:50px;
+
+}
+
+.topper-stat{
+
+background:white;
+
+padding:35px;
+
+border-radius:24px;
+
+text-align:center;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.topper-stat:hover{
+
+transform:translateY(-8px);
+
+}
+
+.topper-stat h3{
+
+font-size:2.5rem;
+
+color:#7c3aed;
+
+margin-bottom:10px;
+
+}
+
+.hall-of-fame{
+
+display:flex;
+
+justify-content:center;
+
+align-items:flex-end;
+
+gap:35px;
+
+flex-wrap:wrap;
+
+margin-top:50px;
+
+}
+
+.fame-card{
+
+background:white;
+
+padding:25px;
+
+border-radius:24px;
+
+text-align:center;
+
+width:280px;
+
+box-shadow:0 15px 40px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.fame-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.fame-card.first{
+
+transform:scale(1.08);
+
+border:3px solid gold;
+
+}
+
+.fame-card.second{
+
+border:3px solid silver;
+
+}
+
+.fame-card.third{
+
+border:3px solid #cd7f32;
+
+}
+
+.fame-card img{
+
+width:170px;
+
+height:170px;
+
+border-radius:50%;
+
+object-fit:cover;
+
+margin-bottom:20px;
+
+}
+
+.fame-card p{
+
+font-size:2rem;
+
+font-weight:700;
+
+color:#7c3aed;
+
+margin:15px 0;
+
+}
+
+.topper-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:30px;
+
+margin-top:50px;
+
+}
+
+.topper-card{
+
+background:white;
+
+border-radius:24px;
+
+overflow:hidden;
+
+text-align:center;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.topper-card:hover{
+
+transform:translateY(-10px);
+
+}
+
+.topper-card img{
+
+width:100%;
+
+height:300px;
+
+object-fit:cover;
+
+}
+
+.topper-card h3{
+
+margin:20px 0 10px;
+
+}
+
+.topper-card strong{
+
+display:block;
+
+padding-bottom:25px;
+
+font-size:1.8rem;
+
+color:#7c3aed;
+
+}
+
+.testimonial-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+gap:30px;
+
+margin-top:50px;
+
+}
+
+.testimonial-card{
+
+background:white;
+
+padding:30px;
+
+border-radius:24px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.testimonial-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.testimonial-card p{
+
+font-style:italic;
+
+line-height:1.8;
+
+margin-bottom:20px;
+
+}
+
+.testimonial-card h4{
+
+color:#7c3aed;
+
+}
+
+@media(max-width:768px){
+
+.topper-hero h1{
+
+font-size:2.8rem;
+
+}
+
+.fame-card.first{
+
+transform:none;
+
+}
+
+}
+
+/* topper gallery header for logo */
+
+.topper-hero-content{
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.topper-logo{
+    width:120px;
+    height:120px;
+    object-fit:contain;
+
+    background:#fff;
+    padding:12px;
+    border-radius:22px;
+
+    box-shadow:0 12px 35px rgba(124,58,237,.35);
+
+    margin-bottom:20px;
+}
+
+.coaching-name{
+    color:#c4b5fd;
+    font-size:1.6rem;
+    font-weight:600;
+    margin-bottom:15px;
+    letter-spacing:1px;
+}
+
+.topper-hero-content h1{
+    font-size:4rem;
+    color:#fff;
+    margin-bottom:20px;
+}
+
+.topper-hero-content p{
+    max-width:750px;
+    margin:auto;
+    color:#d4d4d8;
+    font-size:1.2rem;
+    line-height:1.8;
+}
