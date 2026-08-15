@@ -27,7 +27,7 @@ async function createAdmin() {
 
     const passwordHash =
       await bcrypt.hash(
-        "RK@2026Secure",
+        process.env.DEFAULT_TEACHER_PASSWORD,
         10
       );
 
@@ -35,7 +35,7 @@ async function createAdmin() {
 
       name: "Admin",
 
-      username: "teacher",
+      username: process.env.DEFAULT_TEACHER_USERNAME,
 
       email: "0801me231019@sgsits.ac.in",
 

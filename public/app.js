@@ -30,7 +30,18 @@ const elements = {
   feesCollected: document.getElementById("feesCollected"),
   balanceDue: document.getElementById("balanceDue"),
   subjectCount: document.getElementById("subjectCount"),
-  admissionBtn: document.getElementById("admissionBtn")
+  admissionBtn: document.getElementById("admissionBtn"),
+
+
+  profileBtn: document.getElementById("profileBtn"),
+  profileSection: document.getElementById("profileSection"),
+  closeProfileBtn: document.getElementById("closeProfileBtn"),
+  profileForm: document.getElementById("profileForm"),
+  profileName: document.getElementById("profileName"),
+  profileUsername: document.getElementById("profileUsername"),
+  profileEmail: document.getElementById("profileEmail"),
+  profileMobile: document.getElementById("profileMobile"),
+  profileMessage: document.getElementById("profileMessage")
 };
 
 const moneyFormatter = new Intl.NumberFormat("en-IN", {
@@ -105,6 +116,9 @@ function showApp(teacher) {
   const admissionBtn =
     document.getElementById("admissionBtn");
 
+  const profileBtn =
+    document.getElementById("profileBtn");
+
   if (teacher.role === "admin") {
 
     if (manageBtn) {
@@ -113,6 +127,16 @@ function showApp(teacher) {
 
     if (admissionBtn) {
       admissionBtn.style.display = "block";
+    }
+
+    if (profileBtn) {
+      profileBtn.style.display = "block";
+    }
+
+  } else {
+
+    if (profileBtn) {
+      profileBtn.style.display = "none";
     }
 
   }
@@ -856,6 +880,150 @@ if (admissionBtn) {
 
       window.location.href =
         "/admission.html";
+
+    }
+  );
+
+}
+
+/* =========================
+   ADMIN PROFILE
+========================= */
+
+async function loadAdminProfile() {
+
+  if (!elements.profileForm) {
+    return;
+  }
+
+  try {
+
+    const data =
+      await api("/api/auth/me");
+
+    const teacher =
+      data.teacher;
+
+    elements.profileName.value =
+      teacher.name || "";
+
+    elements.profileUsername.value =
+      teacher.username || "";
+
+    elements.profileEmail.value =
+      teacher.email || "";
+
+    elements.profileMobile.value =
+      teacher.mobile || "";
+
+  } catch (error) {
+
+    elements.profileMessage.textContent =
+      error.message;
+
+  }
+
+}
+
+
+if (elements.profileBtn) {
+
+  elements.profileBtn.addEventListener(
+    "click",
+    async () => {
+
+      if (!elements.profileSection) {
+        return;
+      }
+
+      elements.profileSection.style.display =
+        "block";
+
+      await loadAdminProfile();
+
+      elements.profileSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }
+  );
+
+}
+
+
+if (elements.closeProfileBtn) {
+
+  elements.closeProfileBtn.addEventListener(
+    "click",
+    () => {
+
+      elements.profileSection.style.display =
+        "none";
+
+      elements.profileMessage.textContent =
+        "";
+
+    }
+  );
+
+}
+
+
+if (elements.profileForm) {
+
+  elements.profileForm.addEventListener(
+    "submit",
+    async (event) => {
+
+      event.preventDefault();
+
+      elements.profileMessage.textContent =
+        "Saving...";
+
+      const payload = {
+
+        name:
+          elements.profileName.value.trim(),
+
+        username:
+          elements.profileUsername.value.trim(),
+
+        email:
+          elements.profileEmail.value.trim(),
+
+        mobile:
+          elements.profileMobile.value.trim()
+
+      };
+
+      try {
+
+        const data =
+          await api(
+            "/api/auth/profile",
+            {
+              method: "PUT",
+              body:
+                JSON.stringify(payload)
+            }
+          );
+
+        state.teacher =
+          data.teacher;
+
+        elements.teacherName.textContent =
+          data.teacher.username;
+
+        elements.profileMessage.textContent =
+          "Profile updated successfully.";
+
+      } catch (error) {
+
+        elements.profileMessage.textContent =
+          error.message;
+
+      }
 
     }
   );

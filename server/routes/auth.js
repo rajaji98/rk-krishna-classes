@@ -119,6 +119,89 @@ router.get("/me", requireTeacher, (req, res) => {
   return res.json({ teacher: req.teacher });
 });
 
+// ===============================
+// UPDATE ADMIN PROFILE
+// ===============================
+router.put("/profile", requireTeacher, async (req, res, next) => {
+
+  try {
+
+    const {
+      name,
+      email,
+      mobile,
+      username
+    } = req.body;
+
+    const teacher = await Teacher.findById(req.teacher._id);
+
+    if (!teacher) {
+      return res.status(404).json({
+        message: "Teacher not found."
+      });
+    }
+
+    // Validate required fields
+    if (!name || !email || !username) {
+      return res.status(400).json({
+        message: "Name, email and username are required."
+      });
+    }
+
+    const normalizedEmail =
+      String(email).trim().toLowerCase();
+
+    const normalizedUsername =
+      String(username).trim().toLowerCase();
+
+    // Check if email is already used
+    const emailExists =
+      await Teacher.findOne({
+        email: normalizedEmail,
+        _id: { $ne: teacher._id }
+      });
+
+    if (emailExists) {
+      return res.status(400).json({
+        message: "This email is already being used."
+      });
+    }
+
+    // Check if username is already used
+    const usernameExists =
+      await Teacher.findOne({
+        username: normalizedUsername,
+        _id: { $ne: teacher._id }
+      });
+
+    if (usernameExists) {
+      return res.status(400).json({
+        message: "This username is already being used."
+      });
+    }
+
+    teacher.name = String(name).trim();
+    teacher.email = normalizedEmail;
+    teacher.username = normalizedUsername;
+    teacher.mobile = String(mobile || "").trim();
+
+    await teacher.save();
+
+    return res.json({
+      message: "Profile updated successfully.",
+      teacher: publicTeacher(teacher)
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    return next(error);
+
+  }
+
+});
+
 router.get("/test-email", async (req, res) => {
 
   try {
@@ -187,6 +270,8 @@ router.post(
           .update(token)
           .digest("hex");
 
+      teacher.resetToken = hashedToken;
+
       teacher.resetTokenExpires =
         Date.now() + 60 * 60 * 1000;
 
@@ -249,10 +334,24 @@ router.post(
         password
       } = req.body;
 
+      if (!token || !password) {
+
+        return res.status(400).json({
+          message: "Token and password are required."
+        });
+
+      }
+
+      const hashedToken =
+        crypto
+          .createHash("sha256")
+          .update(token)
+          .digest("hex");
+
       const teacher =
         await Teacher.findOne({
 
-          resetToken: token,
+          resetToken: hashedToken,
 
           resetTokenExpires: {
             $gt: Date.now()
@@ -263,29 +362,24 @@ router.post(
       if (!teacher) {
 
         return res.status(400).json({
-          message:
-            "Invalid or expired token."
+          message: "Invalid or expired token."
         });
 
       }
 
+      teacher.passwordHash =
+        await bcrypt.hash(
+          password,
+          10
+        );
 
+      teacher.resetToken = undefined;
+      teacher.resetTokenExpires = undefined;
 
-teacher.passwordHash =
-  await bcrypt.hash(
-    password,
-    10
-  );
-
-
-teacher.resetToken = undefined;
-teacher.resetTokenExpires = undefined;
-
-await teacher.save();
+      await teacher.save();
 
       return res.json({
-        message:
-          "Password updated successfully."
+        message: "Password updated successfully."
       });
 
     } catch (error) {
@@ -293,8 +387,7 @@ await teacher.save();
       console.error(error);
 
       return res.status(500).json({
-        message:
-          "Something went wrong."
+        message: "Something went wrong."
       });
 
     }

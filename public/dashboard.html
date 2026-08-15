@@ -42,8 +42,7 @@
 
       <div class="topbar-actions">
 
-        <span id="teacherName" 
-          class="teacher-pill">
+        <span id="teacherName" class="teacher-pill">
         </span>
 
         <button
@@ -62,17 +61,26 @@
           Manage Teachers
         </button>
 
-      <button
-        id="logoutButton"
-        class="secondary-button"
-        type="button"
-      >
-        Logout
-      </button>
+        <button
+          id="profileBtn"
+          class="primary-button"
+          style="display:none;"
+        >
+          Admin Profile
+        </button>
+
+        <button
+          id="logoutButton"
+          class="secondary-button"
+          type="button"
+        >
+          Logout
+        </button>
+
+      </div>
 
     </div>
 
-    </header>
 
     <!-- MAIN -->
 
@@ -372,6 +380,106 @@
       </aside>
 
     </main>
+
+        <!-- =========================
+        ADMIN PROFILE
+    ========================= -->
+
+    <section
+      id="profileSection"
+      class="profile-panel"
+      style="display:none;"
+    >
+
+      <div class="section-heading">
+
+        <div>
+          <h2>Admin Profile</h2>
+
+          <p>
+            Update your account information
+          </p>
+        </div>
+
+        <button
+          id="closeProfileBtn"
+          class="secondary-button"
+          type="button"
+        >
+          Close
+        </button>
+
+      </div>
+
+
+      <form
+        id="profileForm"
+        class="student-form"
+      >
+
+        <label>
+
+          Name
+
+          <input
+            type="text"
+            id="profileName"
+            required
+          >
+
+        </label>
+
+
+        <label>
+
+          Username
+
+          <input
+            type="text"
+            id="profileUsername"
+            required
+          >
+
+        </label>
+
+
+        <label>
+
+          Email
+
+          <input
+            type="email"
+            id="profileEmail"
+            required
+          >
+
+        </label>
+
+
+        <label>
+
+          Mobile
+
+          <input
+            type="tel"
+            id="profileMobile"
+          >
+
+        </label>
+
+
+        <button
+          type="submit"
+          class="primary-button"
+        >
+          Save Changes
+        </button>
+
+        <p id="profileMessage"></p>
+
+      </form>
+
+    </section>
 
   </div>
 
