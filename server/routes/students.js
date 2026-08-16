@@ -2,7 +2,7 @@ const express = require("express");
 // const { randomUUID } = require("crypto");
 const Student = require("../models/Student");
 const { requireTeacher } = require("../middleware/auth");
-// const { readJson, writeJson } = require("../utils/store");
+
 const upload =
   require("../middleware/upload");
 
@@ -229,44 +229,55 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post(
+  "/",
+  upload.single("photo"),
+  async (req, res, next) => {
 
-  try {
+    try {
 
-    const newStudent = {
+      const newStudent = {
 
-      teacherId: req.teacher.id,
-      teacherName: req.teacher.username,
+        teacherId: req.teacher.id,
+        teacherName: req.teacher.username,
 
-      ...buildStudentPayload(req.body)
+        ...buildStudentPayload(req.body)
 
-    };
+      };
 
-    const validationMessage =
-      validateStudent(newStudent);
+      if (req.file) {
 
-    if (validationMessage) {
+        newStudent.photo =
+          req.file.filename;
 
-      return res.status(400).json({
-        message: validationMessage
+      }
+
+      const validationMessage =
+        validateStudent(newStudent);
+
+      if (validationMessage) {
+
+        return res.status(400).json({
+          message: validationMessage
+        });
+
+      }
+
+      const student =
+        await Student.create(newStudent);
+
+      return res.status(201).json({
+        student
       });
+
+    } catch (error) {
+
+      return next(error);
 
     }
 
-    const student =
-      await Student.create(newStudent);
-
-    return res.status(201).json({
-      student
-    });
-
-  } catch (error) {
-
-    return next(error);
-
   }
-
-});
+);
 
 router.get("/:id", async (req, res, next) => {
 

@@ -1,6 +1,5 @@
 require("dotenv").config();
 
-console.log("MONGO URI:", process.env.MONGODB_URI);
 
 const path = require("path");
 const express = require("express");
@@ -63,10 +62,10 @@ async function startServer() {
 
   await ensureDataFiles();
 
-  app.listen(port, () => {
+  app.listen(port, "0.0.0.0", () => {
 
     console.log(
-      `RK Krishna Classes is running at http://localhost:${port}`
+      `RK Krishna Classes is running on port ${port}`
     );
 
   });

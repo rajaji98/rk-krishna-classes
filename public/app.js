@@ -66,23 +66,34 @@ function formatDate(value) {
   }).format(new Date(value));
 }
 
+
 async function api(path, options = {}) {
+
+  const headers = {
+    ...(options.headers || {})
+  };
+
+  if (!(options.body instanceof FormData)) {
+    headers["Content-Type"] = "application/json";
+  }
+
   const response = await fetch(path, {
     credentials: "include",
-    headers: {
-      "Content-Type": "application/json",
-      ...(options.headers || {})
-    },
+    headers,
     ...options
   });
-  const data = await response.json().catch(() => ({}));
+
+  const data =
+    await response.json().catch(() => ({}));
 
   if (response.status === 401) {
     showLogin();
   }
 
   if (!response.ok) {
-    throw new Error(data.message || "Request failed.");
+    throw new Error(
+      data.message || "Request failed."
+    );
   }
 
   return data;
@@ -237,6 +248,23 @@ function renderStudents() {
 
   renderSummary();
 }
+function getStudentPhotoUrl(photo) {
+
+  if (!photo) {
+    return "/assets/logo.png";
+  }
+
+  // Cloudinary URL
+  if (
+    photo.startsWith("http://") ||
+    photo.startsWith("https://")
+  ) {
+    return photo;
+  }
+
+  // Old locally stored photo
+  return `/uploads/${photo}`;
+}
 
 function createStudentRow(student) {
   console.log(student);
@@ -251,10 +279,7 @@ function createStudentRow(student) {
   const photo =
     document.createElement("img");
 
-  photo.src =
-    student.photo
-      ? `/uploads/${student.photo}`
-      : "/assets/logo.png";
+      photo.src = getStudentPhotoUrl(student.photo);
 
       photo.style.width = "50px";
       photo.style.height = "50px";
@@ -628,45 +653,57 @@ if (elements.logoutButton) {
 
 if (elements.studentForm) {
 
-  elements.studentForm.addEventListener("submit", async (event) => {
+  elements.studentForm.addEventListener(
+    "submit",
+    async (event) => {
 
-    event.preventDefault();
+      event.preventDefault();
 
-    elements.formMessage.textContent = "";
+      elements.formMessage.textContent = "";
 
-    try {
+      try {
 
-      const payload = formPayload();
+        // Create FormData directly from the form.
+        // This includes ALL form fields + photo.
+        const formData =
+          new FormData(elements.studentForm);
 
-      const path = state.editingId
-        ? `/api/students/${state.editingId}`
-        : "/api/students";
 
-      const method = state.editingId
-        ? "PUT"
-        : "POST";
+        const path = state.editingId
+          ? `/api/students/${state.editingId}`
+          : "/api/students";
 
-      await api(path, {
-        method,
-        body: JSON.stringify(payload)
-      });
 
-      elements.formMessage.textContent =
-        state.editingId
-          ? "Student record updated."
-          : "Student record saved.";
+        const method = state.editingId
+          ? "PUT"
+          : "POST";
 
-      resetForm();
 
-      await loadStudents();
+        await api(path, {
+          method,
+          body: formData
+        });
 
-    } catch (error) {
 
-      elements.formMessage.textContent = error.message;
+        elements.formMessage.textContent =
+          state.editingId
+            ? "Student record updated."
+            : "Student record saved.";
+
+
+        resetForm();
+
+        await loadStudents();
+
+      } catch (error) {
+
+        elements.formMessage.textContent =
+          error.message;
+
+      }
 
     }
-
-  });
+  );
 
 }
 

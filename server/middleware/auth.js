@@ -2,7 +2,14 @@ const jwt = require("jsonwebtoken");
 const Teacher = require("../models/Teacher");
 
 function getJwtSecret() {
-  return process.env.JWT_SECRET || "development-secret-change-this";
+
+  const secret = process.env.JWT_SECRET;
+
+  if (!secret) {
+    throw new Error("JWT_SECRET is not configured.");
+  }
+
+  return secret;
 }
 
 async function requireTeacher(req, res, next) {
