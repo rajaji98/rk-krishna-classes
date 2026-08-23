@@ -1070,3 +1070,25 @@ if (elements.profileForm) {
 if (currentPage.includes("dashboard")) {
   checkSession();
 }
+
+
+
+
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
+
+if (menuToggle && navMenu) {
+    menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+
+        const icon = menuToggle.querySelector("i");
+
+        if (navMenu.classList.contains("active")) {
+            icon.classList.remove("fa-bars");
+            icon.classList.add("fa-times");
+        } else {
+            icon.classList.remove("fa-times");
+            icon.classList.add("fa-bars");
+        }
+    });
+}
