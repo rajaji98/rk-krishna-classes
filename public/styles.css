@@ -1915,12 +1915,12 @@ img {
   max-width: 100%;
 }
 
+/* * =========================================
+   MOBILE - GENERAL
+   Applies to phones and small screens.
+   ========================================= */ 
 
-/* =========================================
-   MOBILE RESPONSIVE
-   ========================================= */
-
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
 
     /* ================= GENERAL ================= */
 
@@ -1939,27 +1939,22 @@ img {
     /* ================= HEADER ================= */
 
     .public-header {
-        position: relative;
         width: 100%;
+        position: relative;
         padding: 12px 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        align-items: center;
+        box-sizing: border-box;
     }
 
     .logo-area {
-        width: 100%;
         display: flex;
         align-items: center;
-        justify-content: center;
-        gap: 10px;
-        text-align: left;
+        min-width: 0;
     }
 
     .site-logo {
         width: 70px;
         height: 70px;
+        flex-shrink: 0;
     }
 
     .logo-area h2 {
@@ -1969,39 +1964,6 @@ img {
 
     .logo-area p {
         font-size: 0.8rem;
-    }
-
-    .menu-toggle {
-        display: block;
-        margin-left: auto;
-        z-index: 1001;
-        font-size: 1.4rem;
-    }
-
-    .public-header nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: #ffffff;
-        padding: 14px 20px;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-        z-index: 1000;
-    }
-
-    .public-header nav.active {
-        display: flex;
-    }
-
-    .public-header nav a {
-        font-size: 1rem;
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
     }
 
 
@@ -2014,6 +1976,7 @@ img {
         display: flex;
         flex-direction: column;
         gap: 45px;
+        box-sizing: border-box;
     }
 
     .hero-content {
@@ -2071,6 +2034,7 @@ img {
         width: 100%;
         padding: 80px 20px 65px;
         overflow: hidden;
+        box-sizing: border-box;
     }
 
     .section h2 {
@@ -2101,6 +2065,7 @@ img {
     }
 
     .about-grid {
+        width: 100%;
         grid-template-columns: 1fr;
         gap: 22px;
     }
@@ -2119,6 +2084,7 @@ img {
         width: 100%;
         min-width: 0;
         padding: 20px;
+        box-sizing: border-box;
     }
 
     .course-card h3 {
@@ -2136,7 +2102,7 @@ img {
     }
 
 
-/* ================= FACULTY ================= */
+    /* ================= FACULTY ================= */
 
     .faculty-grid {
         width: 100%;
@@ -2150,6 +2116,7 @@ img {
         min-width: 0;
         padding: 20px 12px;
         text-align: center;
+        box-sizing: border-box;
     }
 
     .faculty-card h3 {
@@ -2179,6 +2146,7 @@ img {
         grid-template-columns: 1fr;
         padding: 25px 20px;
         gap: 30px;
+        box-sizing: border-box;
     }
 
     .director-image {
@@ -2220,6 +2188,7 @@ img {
         min-height: 65vh;
         padding: 70px 20px;
         border-radius: 0 0 30px 30px;
+        box-sizing: border-box;
     }
 
     .topper-hero-content {
@@ -2263,6 +2232,7 @@ img {
         padding: 18px 8px;
         border-radius: 20px;
         text-align: center;
+        box-sizing: border-box;
     }
 
     .fame-card img {
@@ -2327,7 +2297,7 @@ img {
     }
 
 
-/* ================= TOPPER GALLERY ================= */
+    /* ================= TOPPER GALLERY ================= */
 
     .topper-grid {
         width: 100%;
@@ -2387,6 +2357,7 @@ img {
     .stat-item {
         width: 100%;
         padding: 25px;
+        box-sizing: border-box;
     }
 
 
@@ -2396,16 +2367,58 @@ img {
         width: 100%;
         max-width: 100%;
         padding: 25px 20px;
+        box-sizing: border-box;
     }
-
 }
 
 
 /* =========================================
-   DASHBOARD - FINAL MOBILE RESPONSIVE
+   MOBILE HEADER - PORTRAIT ONLY
+   Menu button appears ONLY when:
+   - screen width <= 768px
+   - screen is portrait
 ========================================= */
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) and (orientation: portrait) {
+
+    .public-header {
+        position: relative;
+    }
+
+    .public-header nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        padding: 14px 20px;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        z-index: 1000;
+        box-sizing: border-box;
+    }
+
+    .public-header nav.active {
+        display: flex;
+    }
+
+    .public-header nav a {
+        font-size: 1rem;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+}
+
+
+/* =========================================
+   DASHBOARD - MOBILE
+========================================= */
+
+@media screen and (max-width: 768px) {
 
     /* ---------- TOPBAR ---------- */
 
@@ -2417,7 +2430,6 @@ img {
         display: flex;
         flex-direction: column;
         align-items: stretch;
-
         gap: 18px;
 
         overflow: hidden;
@@ -2435,14 +2447,12 @@ img {
         justify-content: flex-start;
 
         gap: 10px;
-
         flex: none;
     }
 
     .topbar .site-logo {
         width: 58px;
         height: 58px;
-
         flex-shrink: 0;
         object-fit: contain;
     }
@@ -2454,17 +2464,14 @@ img {
 
     .topbar .logo-area h2 {
         margin: 0;
-
         font-size: 1.15rem;
         line-height: 1.15;
-
         white-space: normal;
         word-break: normal;
     }
 
     .topbar .logo-area p {
         margin: 4px 0 0;
-
         font-size: 0.78rem;
         line-height: 1.3;
     }
@@ -2477,7 +2484,6 @@ img {
 
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-
         gap: 10px;
 
         flex-shrink: 0;
@@ -2487,7 +2493,6 @@ img {
     .topbar-actions a {
         width: 100%;
         min-width: 0;
-
         box-sizing: border-box;
 
         padding: 12px 8px;
@@ -2507,9 +2512,7 @@ img {
     .app-shell {
         width: 100%;
         max-width: 100%;
-
         padding: 28px 14px 40px;
-
         box-sizing: border-box;
     }
 
@@ -2519,11 +2522,8 @@ img {
     .stats-grid,
     .dashboard-stats {
         width: 100%;
-
         display: grid;
-
         grid-template-columns: repeat(2, minmax(0, 1fr));
-
         gap: 14px;
     }
 
@@ -2535,9 +2535,7 @@ img {
         padding: 28px 10px;
 
         box-sizing: border-box;
-
         border-radius: 22px;
-
         text-align: center;
     }
 
@@ -2559,10 +2557,8 @@ img {
     .filters,
     .filter-bar {
         width: 100%;
-
         display: flex;
         flex-direction: column;
-
         gap: 12px;
     }
 
@@ -2572,7 +2568,6 @@ img {
     .filter-bar select {
         width: 100%;
         min-height: 52px;
-
         box-sizing: border-box;
     }
 
@@ -2595,7 +2590,6 @@ img {
         overflow-y: hidden;
 
         -webkit-overflow-scrolling: touch;
-
         box-sizing: border-box;
     }
 
@@ -2603,7 +2597,6 @@ img {
     .records-area table {
         width: max-content;
         min-width: 900px;
-
         border-collapse: collapse;
     }
 
@@ -2612,21 +2605,22 @@ img {
     .records-area th,
     .records-area td {
         white-space: nowrap;
-
         padding: 12px 14px;
     }
 
 
     /* ---------- ACTION BUTTONS ---------- */
 
+    .table-panel td:last-child,
+    .records-area td:last-child {
+        min-width: 130px;
+    }
+
     .table-panel td:last-child button,
     .records-area td:last-child button {
         margin: 3px;
-
         padding: 8px 12px;
-
         font-size: 0.8rem;
-
         border-radius: 10px;
     }
 
@@ -2635,9 +2629,7 @@ img {
 
     .editor-panel {
         width: 100%;
-
         padding: 20px 14px;
-
         box-sizing: border-box;
     }
 
@@ -2649,12 +2641,119 @@ img {
     .student-form select,
     .student-form textarea {
         width: 100%;
-
         box-sizing: border-box;
     }
 
     .student-form button {
         width: 100%;
         min-height: 52px;
+    }
+
+
+    /* ---------- SUBJECT CHECKBOXES ---------- */
+
+    .subjects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+
+    /* ---------- ADMIN PROFILE ---------- */
+
+    .teacher-pill {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+    }
+}
+
+
+/* =========================================
+   SMALL PHONES
+   ========================================= */
+
+@media screen and (max-width: 380px) {
+
+    .section {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .course-grid,
+    .faculty-grid {
+        gap: 10px;
+    }
+
+    .course-card {
+        padding: 16px 12px;
+    }
+
+    .faculty-card {
+        padding: 16px 8px;
+    }
+
+    .fame-card {
+        padding: 14px 5px;
+    }
+
+    .fame-card img {
+        width: 58px;
+        height: 58px;
+    }
+
+    .fame-card h3 {
+        font-size: 0.82rem;
+    }
+
+    .fame-card strong {
+        font-size: 1rem;
+    }
+
+    .topper-stat {
+        padding: 20px 5px;
+    }
+
+    .topper-stat h3 {
+        font-size: 1.25rem;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL / NARROW PHONES
+   ========================================= */
+
+@media screen and (max-width: 330px) {
+
+    .course-grid,
+    .faculty-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hall-of-fame,
+    .topper-stats,
+    .topper-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   MENU TOGGLE - PORTRAIT ONLY
+   =========================================
+   Hidden on ALL screens by default.
+   Visible only when:
+   - viewport width <= 768px
+   - viewport height > viewport width
+========================================= */
+
+.menu-toggle {
+    display: none !important;
+}
+
+@media screen and (max-width: 768px) and (orientation: portrait) {
+    .menu-toggle {
+        display: block !important;
+        margin-left: auto;
+        z-index: 1001;
+        font-size: 1.4rem;
     }
 }
