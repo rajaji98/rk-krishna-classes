@@ -228,9 +228,7 @@ nav a:hover::after {
 /* HERO */
 
 .hero-section {
-  min-height: 100vh;
-  padding: 80px 60px;
-
+  min-height: auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -291,6 +289,9 @@ nav a:hover::after {
 
 .hero-image img {
   width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
   border-radius: 30px;
 
   transition:
@@ -1972,7 +1973,7 @@ img {
     .hero-section {
         width: 100%;
         min-height: auto;
-        padding: 65px 20px 80px;
+        padding: 65px 20px 30px;
         display: flex;
         flex-direction: column;
         gap: 45px;
@@ -2024,6 +2025,7 @@ img {
     .hero-image img {
         width: 100%;
         height: auto;
+        display: block;
         border-radius: 24px;
     }
 
