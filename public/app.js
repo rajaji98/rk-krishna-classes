@@ -251,7 +251,7 @@ function renderStudents() {
 function getStudentPhotoUrl(photo) {
 
   if (!photo) {
-    return "/assets/logo.png";
+    return "/assets/logo.webp";
   }
 
   // Cloudinary URL
@@ -732,7 +732,7 @@ if (
       text:
         "Shape Your Future With High-Quality Education.",
       image:
-        "/assets/slide1.jpg"
+        "assets/slide1.webp"
     },
     {
       title:
@@ -740,7 +740,7 @@ if (
       text:
         "Our Students Consistently Achieve Excellence.",
       image:
-        "/assets/slide2.jpg"
+        "/assets/slide2.webp"
     },
     {
       title:
@@ -748,7 +748,7 @@ if (
       text:
         "Learn From Experienced Teachers.",
       image:
-        "/assets/slide3.jpg"
+        "/assets/slide3.webp"
     }
   ];
 

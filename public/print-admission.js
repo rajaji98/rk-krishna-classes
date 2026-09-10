@@ -91,7 +91,7 @@ async function loadStudent() {
     photo.src =
     student.photo
         ? `/uploads/${student.photo}`
-        : "/assets/logo.png";
+        : "assets/logo.webp";
 
     photo.onload = () => {
     window.print();
