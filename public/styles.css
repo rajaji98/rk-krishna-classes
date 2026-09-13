@@ -99,49 +99,6 @@ body::after {
   background: rgba(59, 130, 246, 0.08);
 }
 
-/* body::before{
-
-    top:-250px;
-
-    left:-220px;
-
-    background:
-
-        radial-gradient(
-
-            circle,
-
-            rgba(140,110,255,.55),
-
-            rgba(0,180,255,.18),
-
-            transparent 72%
-
-        );
-
-}
-
-body::after{
-
-    right:-220px;
-
-    bottom:-220px;
-
-    background:
-
-        radial-gradient(
-
-            circle,
-
-            rgba(255,80,170,.25),
-
-            rgba(80,120,255,.35),
-
-            transparent 72%
-
-        );
-
-} */
 
 /* HEADER */
 .public-header {
@@ -233,6 +190,7 @@ nav a:hover::after {
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 60px;
+  padding: 10px;
 }
 
 .hero-content h1 {
